@@ -1,30 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% block title %}
-    {% endblock %}
+    
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>{% block title %}เว็บของฉัน{% endblock %}</title>
+
     <style>
-        h1{ text-align: center; color:aqua;}
-        h2{ color:powderblue;}
-        p{text-align: center; font-size: 125%;}
+        /* ตัวอย่าง: กำหนดฟอนต์พื้นฐานให้กับทุกหน้า */
+        body {
+            font-family: 'Sarabun', sans-serif; /* แนะนำให้ใช้ Google Fonts เพื่อความสวยงาม */
+        }
+        .exercise-section { 
+            margin-bottom: 40px; 
+            padding: 20px; 
+            background-color: white;
+            border: 1px solid #ddd; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .exercise-title { 
+            font-size: 1.5em; 
+            margin-bottom: 15px; 
+            color: #333; 
+            font-weight: 600;
+        }
+        .arrow { font-size: 2em; margin: 0 20px; color: #666; }
+        .cat-image { width: 100px; height: 100px; object-fit: contain; }
     </style>
 </head>
-<body>
-    <p>
-    <a href="/" class="btn btn-primary" >หน้าแรก</a>
-    <a href="/form" class="btn btn-secondary">ฟอร์ม</a>
-    <a href="/about"class="btn btn-success">เกี่ยวกับเรา</a>
-    <a href="/admin"class="btn btn-danger">ผู้ดูและระบบ</a>
-    <a href="/login_form"class="btn btn-success">login</a>
-    <a href="/JavaScript_Exercises"class="btn btn-warning">JavaScript Exercises</a>
-    </p>
-    <hr>
-    <div>
-        {% block content %}
-        {% endblock %}
-    </div>
+<body class="bg-gray-100">
+
+    <nav class="bg-white shadow-md p-4 mb-8">
+        <div class="container mx-auto flex justify-center items-center space-x-2 md:space-x-4">
+            <a href="/" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-200">หน้าแรก</a>
+            <a href="/form" class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition duration-200">ฟอร์ม</a>
+            <a href="/about" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition duration-200">เกี่ยวกับเรา</a>
+            <a href="/admin" class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition duration-200">ผู้ดูแลระบบ</a>
+            <a href="/login_form" class="px-4 py-2 bg-teal-500 text-white rounded-md hover:bg-teal-600 transition duration-200">Login</a>
+            <a href="/JavaScript_Exercises" class="px-4 py-2 bg-purple-500 text-white rounded-md hover:bg-purple-600 transition duration-200">JavaScript Exercises</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4">
+        <div>
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+
 </body>
 </html>
