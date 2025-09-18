@@ -1,0 +1,33 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+    <title>หน้าแรก</title>
+{% endblock %}
+
+{% block content %}
+<table class="table">
+  <thead>
+    <tr class="table-danger">
+      <th scope="col">ID</th>
+      <th scope="col">NAME</th>
+      <th scope="col">AGE</th>
+      <th scope="col">RECORDING DATE</th>
+      <th scope="col">EDIT</th>
+      <th scope="col">DELETE</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for person in all_person %}
+    <tr class="table-info">
+      <th scope="row">{{person.id}}</th>
+      <td>{{person.name}}</td>
+      <td>{{person.age}}</td>
+      <td>{{person.date}}</td>
+      <td><a href="edit/{{person.id}}" class="btn btn-secondary" onclick="return confirm('Do you want to edit {{person.name}} it?')">EDIT</a></td>
+      <td><a href="delete/{{person.id}}" class="btn btn-danger" onclick="return confirm('Do you want to delete {{person.name}} it?')">DELETE</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

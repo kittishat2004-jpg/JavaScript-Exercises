@@ -1,0 +1,262 @@
+{% extends "base.html" %}
+{% load static %} 
+
+{% block title %}
+    แบบฝึกหัด JavaScript
+{% endblock %}
+
+{% block content %}
+    <h1 class="text-2xl font-bold mb-8 text-center" style="color: #000;">แบบฝึกหัด JavaScript</h1>
+
+    <!-- ข้อ 1: เปลี่ยนสีข้อความ (ถูกต้องแล้ว) -->
+    <div class="exercise-section">
+        <div class="exercise-title">1. แสดงคำว่า "สวัสดีชาวโลก" ด้วยข้อความสีดำ เมื่อกดปุ่ม เปลี่ยนสี ให้เปลี่ยนเป็นสีแดง</div>
+        <div class="flex items-center justify-center">
+            <p id="helloText" class="text-4xl font-bold text-black" style="font-size: 2rem;">สวัสดีชาวโลก</p>
+            <span class="arrow">→</span>
+            <p id="helloTextResult" class="text-4xl font-bold" style="color: black; font-size: 2rem;">สวัสดีชาวโลก</p>
+        </div>
+        <div class="flex justify-center mt-4">
+            <button id="changeColorBtn" class="px-6 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition">เปลี่ยนสี</button>
+        </div>
+    </div>
+
+    <!-- ข้อ 2: แสดงวันและเวลาปัจจุบัน (ถูกต้องแล้ว) -->
+    <div class="exercise-section">
+        <div class="exercise-title">2. ให้แสดงวันและเวลาปัจจุบัน ในรูปแบบไทยดังรูป</div>
+        <div class="text-center mt-4">
+            <p id="currentDateTime" class="text-2xl font-semibold" style="font-size: 1.5rem;">20 มิถุนายน 2565 07:55:32</p>
+        </div>
+    </div>
+
+    <!-- ข้อ 3: สลับภาพแมว (แก้ไขแล้ว) -->
+    <div class="exercise-section">
+        <div class="exercise-title">3. ให้แสดงภาพแมว ซึ่งสามารถสลับทิศทางของแมวตามการกดปุ่มได้ ดังรูป</div>
+        <div class="flex items-center justify-center">
+            <!-- แสดงภาพแมวยืนเป็นภาพเริ่มต้น -->
+            <img id="catImage" src="{% static 'images/Idle.png' %}" alt="Cat Standing" class="cat-image">
+            <span class="arrow">→</span>
+            <img id="catImageResult" src="{% static 'images/Slide.png' %}" alt="Cat Result" class="cat-image">
+        </div>
+        <div class="flex justify-center mt-4 space-x-4">
+            <!-- ใช้ data attribute เพื่อเก็บ URL ของภาพ -->
+            <button id="catLeftBtn" class="px-6 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition" data-cat-image="{% static 'images/Idle.png' %}">แมวยืน</button>
+            <button id="catRightBtn" class="px-6 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition" data-cat-image="{% static 'images/Slide.png' %}">แมวสไลด์</button>
+        </div>
+    </div>
+
+    <!-- ข้อ 4: ซ่อน/แสดงตาราง (แก้ไขแล้ว) -->
+    <div class="exercise-section">
+        <div class="exercise-title">4. ให้สร้างปุ่มซ่อนหรือแสดงตารางได้ ดังรูป</div>
+        <div class="flex justify-center space-x-4">
+            <button id="showTableBtn" class="px-6 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition">แสดงตาราง</button>
+            <button id="hideTableBtn" class="px-6 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition">ซ่อนตาราง</button>
+        </div>
+        <!-- แก้ไขโครงสร้างและข้อมูลตารางให้ตรงกับรูปภาพ -->
+        <table id="dataTable" class="hidden">
+            <caption>ตารางสินค้า</caption>
+            <thead>
+                <tr>
+                    <th>รายการที่ 1</th>
+                    <th>รายการที่ 2</th>
+                    <th>รายการที่ 3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>8</td>
+                    <td>16</td>
+                    <td>32</td>
+                </tr>
+                <tr>
+                    <td>64</td>
+                    <td>128</td>
+                    <td>256</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ข้อ 5: คำนวณค่าตัวเลข (ถูกต้องแล้ว) -->
+    <div class="exercise-section flex">
+        <div class="w-1/2 pr-4">
+            <div class="exercise-title">5. ให้รับข้อมูลตัวเลข 3 ตัวจากผู้ใช้ผ่าน input box แล้วเมื่อกดปุ่ม Submit แสดงค่าเฉลี่ย ค่าสูงสุด และค่าต่ำสุดออกมา</div>
+            <div class="input-group">
+                <label for="num1">Number #1</label>
+                <input type="number" id="num1" value="10">
+            </div>
+            <div class="input-group">
+                <label for="num2">Number #2</label>
+                <input type="number" id="num2" value="15">
+            </div>
+            <div class="input-group">
+                <label for="num3">Number #3</label>
+                <input type="number" id="num3" value="20">
+            </div>
+            <button id="calculateBtn" class="px-6 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition mt-4">Submit</button>
+        </div>
+        <div class="w-1/2 pl-4 border-l border-gray-300">
+            <div class="result-text">
+                <p style="text-align: left; font-size: 1rem;">ค่าเฉลี่ยคือ <span id="avgResult"></span></p>
+                <p style="text-align: left; font-size: 1rem;">ค่าสูงสุดคือ <span id="maxResult"></span></p>
+                <p style="text-align: left; font-size: 1rem;">ค่าต่ำสุดคือ <span id="minResult"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ข้อ 6: ฟอร์มลงทะเบียน (ถูกต้องแล้ว) -->
+    <div class="exercise-section">
+        <!-- ... โค้ดส่วนฟอร์มเหมือนเดิม ... -->
+        <div class="exercise-title">6. ให้สร้างฟอร์มที่ใช้ในการลงทะเบียนโดยมีการตรวจสอบข้อมูลก่อนจะ Submit ดังรูป</div>
+        <div class="flex justify-center">
+            <form id="registrationForm" class="bg-gray-50 p-6 rounded shadow-md w-96 border border-gray-200">
+                <h3 class="text-xl font-semibold mb-4 text-center">ลงทะเบียน</h3>
+
+                <div class="mb-3">
+                    <label for="regName" class="block text-sm font-medium text-gray-700">ชื่อ:</label>
+                    <input type="text" id="regName" name="regName" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                    <p id="regNameError" class="error-message hidden">Please enter your full name.</p>
+                </div>
+
+                <div class="mb-3">
+                    <label for="regAddress" class="block text-sm font-medium text-gray-700">ที่อยู่:</label>
+                    <input type="text" id="regAddress" name="regAddress" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                    <p id="regAddressError" class="error-message hidden">Please enter your address.</p>
+                </div>
+
+                <div class="mb-3">
+                    <label for="regEmail" class="block text-sm font-medium text-gray-700">อีเมล:</label>
+                    <input type="email" id="regEmail" name="regEmail" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                    <p id="regEmailError" class="error-message hidden">Please enter a valid email address.</p>
+                </div>
+
+                <div class="mb-3">
+                    <label for="regPassword" class="block text-sm font-medium text-gray-700">รหัสผ่าน:</label>
+                    <input type="password" id="regPassword" name="regPassword" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                    <p id="regPasswordError" class="error-message hidden">Please enter a password with at least 6 characters.</p>
+                </div>
+
+                <div class="mb-3">
+                    <label for="regCourse" class="block text-sm font-medium text-gray-700">เลือกคอร์ส:</label>
+                    <select id="regCourse" name="regCourse" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                        <option value="">Please select your course.</option>
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                        <option value="javascript">JavaScript</option>
+                    </select>
+                    <p id="regCourseError" class="error-message hidden">Please select a course.</p>
+                </div>
+
+                <div class="mb-4 flex items-center">
+                    <input type="checkbox" id="regAgree" name="regAgree" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                    <label for="regAgree" class="ml-2 block text-sm text-gray-900">ฉันยอมรับเงื่อนไข</label>
+                    <p id="regAgreeError" class="error-message hidden ml-2">You must agree to the above information.</p>
+                </div>
+
+                <div class="flex justify-between">
+                    <button type="submit" class="px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">Submit</button>
+                    <button type="reset" class="px-6 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400 transition">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // ข้อ 1: เปลี่ยนสีข้อความ (โค้ดเดิม)
+        const changeColorBtn = document.getElementById('changeColorBtn');
+        const helloTextResult = document.getElementById('helloTextResult');
+        changeColorBtn.addEventListener('click', () => {
+            helloTextResult.style.color = (helloTextResult.style.color === 'black') ? 'red' : 'black';
+        });
+
+        // ข้อ 2: แสดงวันและเวลาปัจจุบัน
+        function updateDateTime() {
+            const now = new Date();
+            const options = {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            };
+            const formatter = new Intl.DateTimeFormat('th-TH', options);
+            document.getElementById('currentDateTime').textContent = formatter.format(now);
+        }
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+
+        // ข้อ 3: สลับภาพแมว (โค้ดที่แก้ไข)
+        const catLeftBtn = document.getElementById('catLeftBtn');
+        const catRightBtn = document.getElementById('catRightBtn');
+        const catImageResult = document.getElementById('catImageResult');
+        
+        // เมื่อกดปุ่มแมวซ้าย ให้เปลี่ยน src ของรูปภาพเป็นรูปที่เก็บใน data-cat-image
+        catLeftBtn.addEventListener('click', () => {
+            catImageResult.src = catLeftBtn.dataset.catImage;
+        });
+
+        // เมื่อกดปุ่มแมวขวา ก็ทำเช่นเดียวกัน
+        catRightBtn.addEventListener('click', () => {
+            catImageResult.src = catRightBtn.dataset.catImage;
+        });
+        
+        // ข้อ 4: ซ่อน/แสดงตาราง (โค้ดเดิม)
+        const showTableBtn = document.getElementById('showTableBtn');
+        const hideTableBtn = document.getElementById('hideTableBtn');
+        const dataTable = document.getElementById('dataTable');
+        showTableBtn.addEventListener('click', () => dataTable.classList.remove('hidden'));
+        hideTableBtn.addEventListener('click', () => dataTable.classList.add('hidden'));
+
+        // ข้อ 5: คำนวณค่าตัวเลข (โค้ดเดิม)
+        const calculateBtn = document.getElementById('calculateBtn');
+        calculateBtn.addEventListener('click', () => {
+            const n1 = parseFloat(document.getElementById('num1').value);
+            const n2 = parseFloat(document.getElementById('num2').value);
+            const n3 = parseFloat(document.getElementById('num3').value);
+            if (!isNaN(n1) && !isNaN(n2) && !isNaN(n3)) {
+                const numbers = [n1, n2, n3];
+                document.getElementById('avgResult').textContent = (numbers.reduce((a, b) => a + b, 0) / numbers.length).toFixed(2);
+                document.getElementById('maxResult').textContent = Math.max(...numbers);
+                document.getElementById('minResult').textContent = Math.min(...numbers);
+            } else {
+                document.getElementById('avgResult').textContent = "โปรดป้อนตัวเลข";
+                document.getElementById('maxResult').textContent = "N/A";
+                document.getElementById('minResult').textContent = "N/A";
+            }
+        });
+
+        // ข้อ 6: ฟอร์มลงทะเบียน
+        const registrationForm = document.getElementById('registrationForm');
+        registrationForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            let isValid = true;
+            const fields = [
+                { id: 'regName', errorId: 'regNameError', validate: (val) => val.trim() !== '' },
+                { id: 'regAddress', errorId: 'regAddressError', validate: (val) => val.trim() !== '' },
+                { id: 'regEmail', errorId: 'regEmailError', validate: (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val) },
+                { id: 'regPassword', errorId: 'regPasswordError', validate: (val) => val.length >= 6 },
+                { id: 'regCourse', errorId: 'regCourseError', validate: (val) => val !== '' },
+                { id: 'regAgree', errorId: 'regAgreeError', validate: (val, el) => el.checked }
+            ];
+
+            fields.forEach(field => {
+                const element = document.getElementById(field.id);
+                const errorElement = document.getElementById(field.errorId);
+                if (!field.validate(element.value, element)) {
+                    errorElement.classList.remove('hidden');
+                    isValid = false;
+                } else {
+                    errorElement.classList.add('hidden');
+                }
+            });
+
+            if (isValid) {
+                alert('ลงทะเบียนสำเร็จ!');
+                registrationForm.reset();
+                fields.forEach(field => document.getElementById(field.errorId).classList.add('hidden'));
+            }
+        });
+    </script>
+{% endblock %}
